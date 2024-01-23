@@ -49,14 +49,14 @@ class CTA_API:
     def get_locations(self):
         # Train lines must be specified as follows
         train_lines = [
-            # "red",
-            # "blue",
+            "red",
+            "blue",
             "p",
-            # "org",
-            # "brn",
+            "org",
+            "brn",
             "y",
             "g",
-            # "pink",
+            "pink",
             ]
         params = {
             "key":  os.environ.get("CTA_TRAIN_TRACKER_API_KEY"),
