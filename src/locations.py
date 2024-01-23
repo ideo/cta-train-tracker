@@ -25,10 +25,13 @@ def parse_response(response, simplify=False):
         line = {}
         line["name"] = packet["@name"]
         line["trains"] = []
-        if "train" in packet:
+        if "train" in packet and isinstance(packet, dict):
             for train in packet["train"]:
                 line["trains"].append(clean_train_packet(train))
-        train_locations.append(line)
+
+            # including this within the indent means, for example, the yellow
+            # line will not be included if no trains are running
+            train_locations.append(line)
 
     if simplify:
         train_locations = simplify_response(train_locations)
@@ -38,8 +41,9 @@ def parse_response(response, simplify=False):
 
 def simplify_response(train_locations):
     for line in train_locations:
-        if "trains" in line:
-            line["trains"] = [(pkt["lat"], pkt["lon"]) for pkt in line["trains"]]
+        # Some trains are returned as having a (lat,lng) of (0,0)
+        # this will drop those
+        line["trains"] = [(pkt["lat"], pkt["lon"]) for pkt in line["trains"] if pkt["lat"] > 0]
     return train_locations
     
 
