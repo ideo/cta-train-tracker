@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "cta-train-tracker"
+version = "0.1.0"
+description = "A Python wrapper on the CTA Train Tracker, written specifically to update IDEO's interactive LED L Map."
+authors = ["Joe Gambino <joe@gam.bingo>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+streamlit = "^1.30.0"
+watchdog = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
